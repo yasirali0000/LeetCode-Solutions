@@ -6,11 +6,12 @@ class MinStack {
         min = Long.MAX_VALUE;
     }
     public void push(int val) {
-        if(st.size() == 0) min = (long)val;
-        if(val>=min) st.push((long)val);
+        long value = (long)val;
+        if(st.size() == 0) min = value;
+        if(value>=min) st.push(value);
         else {
-            st.push((long)val + ((long)val-min));
-            min = val;
+            st.push(value + (value-min));
+            min = value;
         }   
     }
     public void pop() {
