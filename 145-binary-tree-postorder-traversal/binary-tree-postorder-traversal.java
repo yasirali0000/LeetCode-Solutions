@@ -28,7 +28,7 @@ class Solution {
     //     Collections.reverse(ans);
     //     return ans;
     // }
-    List<Integer> list=new LinkedList<>();
+    List<Integer> list=new ArrayList<>();
     public List<Integer> postorderTraversal(TreeNode root) {
         if(root!=null){
             postorderTraversal(root.left);
