@@ -31,29 +31,49 @@
 // }
 
 class Solution {
+    // public boolean isValidBST(TreeNode root) {
+    //     TreeNode curr = root;
+    //     long prev = Long.MIN_VALUE;;
+    //     while (curr != null) {
+    //         if (curr.left != null) {
+    //             TreeNode pred = curr.left;
+    //             while (pred.right != null && pred.right != curr)
+    //                 pred = pred.right;
+    //             if (pred.right == null) { // link
+    //                 pred.right = curr;
+    //                 curr = curr.left;
+    //             } else { // unlink
+    //                 pred.right = null;
+    //                 if(curr.val <= prev) return false;
+    //                 prev = curr.val;
+    //                 curr = curr.right;
+    //             }
+    //         } else {
+    //             if(curr.val <= prev) return false;
+    //             prev = curr.val;
+    //             curr = curr.right;
+    //         }
+    //     }
+    //     return true;
+    // }
+
+    
     public boolean isValidBST(TreeNode root) {
-        TreeNode curr = root;
-        long prev = Long.MIN_VALUE;;
-        while (curr != null) {
-            if (curr.left != null) {
-                TreeNode pred = curr.left;
-                while (pred.right != null && pred.right != curr)
-                    pred = pred.right;
-                if (pred.right == null) { // link
-                    pred.right = curr;
-                    curr = curr.left;
-                } else { // unlink
-                    pred.right = null;
-                    if(curr.val <= prev) return false;
-                    prev = curr.val;
-                    curr = curr.right;
-                }
-            } else {
-                if(curr.val <= prev) return false;
-                prev = curr.val;
-                curr = curr.right;
-            }
+        return dfs(root, Long.MIN_VALUE, Long.MAX_VALUE);
+    }
+
+    private boolean dfs(TreeNode node, long small, long large) { 
+        if(node == null) { 
+            return true;
         }
-        return true;
+
+        if(small >= node.val || large <= node.val) { 
+            return false;
+        }
+
+        
+        boolean left = dfs(node.left, small, node.val);
+        boolean right = dfs(node.right, node.val, large);
+        return left && right;
     }
 }
