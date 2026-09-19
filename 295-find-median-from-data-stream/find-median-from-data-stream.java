@@ -1,6 +1,6 @@
 class MedianFinder {
-    PriorityQueue<Integer> minheap = new PriorityQueue<>();
-    PriorityQueue<Integer> maxheap = new PriorityQueue<>(Collections.reverseOrder());
+    PriorityQueue<Integer> minheap = new PriorityQueue<Integer>();
+    PriorityQueue<Integer> maxheap = new PriorityQueue<Integer>(Collections.reverseOrder());
     public MedianFinder() {
         
     }
