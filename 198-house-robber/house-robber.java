@@ -27,7 +27,7 @@ class Solution {
 
     public int rob(int[] arr) {
         int n = arr.length;
-        int[] dp = new int[n];
+        int[] dp = new int[3];
         dp[0] = arr[0];
         if(n==1) return arr[0];
         if(n>1) dp[1] = Math.max(dp[0],arr[1]);
