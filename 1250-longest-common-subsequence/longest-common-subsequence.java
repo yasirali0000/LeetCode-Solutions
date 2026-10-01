@@ -7,9 +7,9 @@ class Solution {
                 dp[i][j] = -1;
             }
         }
-        return LCS(m-1,n-1,new StringBuilder(a),new StringBuilder(b),dp);
+        return LCS(m-1,n-1,a,b,dp);
     }
-    public int LCS(int i,int j,StringBuilder a,StringBuilder b,int[][] dp) {
+    public int LCS(int i,int j,String a,String b,int[][] dp) {
         if(i<0 || j<0) return 0;
         if(dp[i][j]!=-1) return dp[i][j];
         if(a.charAt(i)==b.charAt(j)) return dp[i][j] = 1+LCS(i-1,j-1,a,b,dp);
