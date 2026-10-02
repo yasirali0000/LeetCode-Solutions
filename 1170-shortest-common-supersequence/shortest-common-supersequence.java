@@ -3,23 +3,29 @@ class Solution {
         String lcs = LCS(str1, str2);
         StringBuilder ans = new StringBuilder();
         int i = 0, j = 0;
-        for (char ch : lcs.toCharArray()) {
+        for (int k = 0; k < lcs.length(); k++) {
+            char ch = lcs.charAt(k);
+            // str1 ke extra characters add karo
             while (str1.charAt(i) != ch) {
                 ans.append(str1.charAt(i));
                 i++;
             }
+            // str2 ke extra characters add karo
             while (str2.charAt(j) != ch) {
                 ans.append(str2.charAt(j));
                 j++;
             }
+            // Common character ek baar add karo
             ans.append(ch);
             i++;
             j++;
         }
+        // str1 ke remaining characters
         while (i < str1.length()) {
             ans.append(str1.charAt(i));
             i++;
         }
+        // str2 ke remaining characters
         while (j < str2.length()) {
             ans.append(str2.charAt(j));
             j++;
