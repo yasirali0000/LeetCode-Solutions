@@ -8,7 +8,6 @@ class Solution {
             sum = sum*10 + last;
             x /= 10;
         }
-        if(original == sum) return true;
-        else return false;
+        return original == sum;
     }
 }
