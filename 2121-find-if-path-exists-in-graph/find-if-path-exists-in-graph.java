@@ -8,9 +8,10 @@ class Solution {
             adj.add(list);
         }
 
-        for (int[] edge : edges) {
-            adj.get(edge[0]).add(edge[1]);
-            adj.get(edge[1]).add(edge[0]);
+        for (int i=0;i<edges.length;i++) {
+            int a= edges[i][0],b = edges[i][1];
+            adj.get(a).add(b);
+            adj.get(b).add(a);
         }
         vis[start] = true;
         bfs(start,n,adj,vis);
