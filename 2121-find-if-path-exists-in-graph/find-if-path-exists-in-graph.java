@@ -14,22 +14,34 @@ class Solution {
             adj.get(b).add(a);
         }
         vis[start] = true;
-        bfs(start,n,adj,vis,end);
+        // bfs(start,n,adj,vis,end);
+        dfs(start,n,adj,vis,end);
         return vis[end];
     }
-    public void bfs(int start,int n,List<List<Integer>> adj,boolean[] vis,int end) {
-        Queue<Integer> q = new LinkedList<>();
-        q.add(start);
-        
-        while(q.size()>0) {
-            int front = q.remove();
-            for(int ele : adj.get(front)) {
-                if(!vis[ele]) {
-                    vis[ele] = true;
-                    q.add(ele);
-                    if(ele == end) return;
-                } 
-            }
+    public void dfs(int start,int n,List<List<Integer>> adj,boolean[] vis,int end) {
+        vis[start] = true;
+        for(int ele : adj.get(start)) {
+            if(!vis[ele]) dfs(ele,n,adj,vis,end);
         }
+    }
+    
+    // public void bfs(int start,int n,List<List<Integer>> adj,boolean[] vis,int end) {
+    //     Queue<Integer> q = new LinkedList<>();
+    //     q.add(start);
+        
+    //     while(q.size()>0) {
+    //         int front = q.remove();
+    //         for(int ele : adj.get(front)) {
+    //             if(!vis[ele]) {
+    //                 vis[ele] = true;
+    //                 q.add(ele);
+    //                 if(ele == end) return;
+    //             } 
+    //         }
+    //     }
+    // }
+
+    public void bfs(int start,int n,List<List<Integer>> adj,boolean[] vis,int end) {
+        
     }
 }
