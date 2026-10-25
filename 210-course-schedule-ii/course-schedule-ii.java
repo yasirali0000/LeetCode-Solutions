@@ -3,10 +3,10 @@ class Solution {
         List<List<Integer>> adj = new ArrayList<>();
         for(int i=1;i<=n;i++) adj.add(new ArrayList<>());
         int[] indegree = new int[n];
-        for(int[] pres : pre) {
-            // int a = pre[i][0], b = pre[i][1];  // b-> edge
-            adj.get(pres[1]).add(pres[0]);
-            indegree[pres[0]]++;
+        for(int i=0;i<pre.length;i++) {
+            int a = pre[i][0], b = pre[i][1];  // b-> edge
+            adj.get(b).add(a);
+            indegree[a]++;
         }
         // kahn's algorithm
         Queue<Integer> q = new LinkedList<>();
