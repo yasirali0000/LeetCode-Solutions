@@ -26,8 +26,7 @@ class Solution {
             sum += dist;
             vis[node] = true;
             for(int i=0;i<n;i++) {
-                if(i==node || i==parent) continue;
-                if( vis[i]==true) continue;
+                if(i==node || i==parent || vis[i]==true) continue;
                 int x1 = points[node][0],y1 = points[node][1];
                 int x2 = points[i][0],y2 = points[i][1];
                 int mindist = Math.abs(x2-x1) + Math.abs(y2-y1);
