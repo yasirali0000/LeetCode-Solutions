@@ -27,26 +27,57 @@ class Solution {
     //     }
     // }
 
+    // public int findCircleNum(int[][] adj) {
+    //     int n = adj.length;
+    //     int count = 0;
+    //     boolean[] vis = new boolean[n];
+    //     for (int i = 0; i < n; i++) {
+    //         if (!vis[i]) {
+    //             dfs(i, vis, adj);
+    //             count++;
+    //         }
+    //     }
+    //     return count;
+    // }
+
+    // public void dfs(int i, boolean[] vis, int[][] adj) {
+    //     int n = adj.length;
+    //     vis[i] = true;
+    //     for (int j = 0; j < n; j++) {
+    //         if (adj[i][j] == 1 && !vis[j]) {
+    //             dfs(j,vis,adj);
+    //         }
+    //     }
+    // }
+
+    static int[] parent;
+    public int find(int a) {
+        if(parent[a]==a) return a;
+        return find(parent[a]);
+    }
+    public void union(int a,int b) {
+        int leadera = find(a);
+        int leaderb = find(b);
+        if(leadera!=leaderb) {
+            parent[leaderb] = leadera;
+        }
+    }
     public int findCircleNum(int[][] adj) {
         int n = adj.length;
-        int count = 0;
-        boolean[] vis = new boolean[n];
-        for (int i = 0; i < n; i++) {
-            if (!vis[i]) {
-                dfs(i, vis, adj);
-                count++;
+        parent  = new int[n+1];
+        for(int i=1;i<=n;i++) {
+            parent[i] = i;
+        }
+        for(int i=0;i<n;i++) {
+            for(int j=0;j<n;j++) {
+                // edge is from i+1 to j+1
+                if(i!=j && adj[i][j]==1) union(i+1,j+1);
             }
+        }
+        int count = 0;
+        for(int i=1;i<=n;i++) {
+            if(parent[i]==i) count++;
         }
         return count;
-    }
-
-    public void dfs(int i, boolean[] vis, int[][] adj) {
-        int n = adj.length;
-        vis[i] = true;
-        for (int j = 0; j < n; j++) {
-            if (adj[i][j] == 1 && !vis[j]) {
-                dfs(j,vis,adj);
-            }
-        }
     }
 }
