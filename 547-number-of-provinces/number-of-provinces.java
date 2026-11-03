@@ -49,24 +49,67 @@ class Solution {
     //         }
     //     }
     // }
+       
 
+    // Disjoint Set Union
+    // static int[] parent;
+    // public int find(int a) {
+    //     if(parent[a]==a) return a;
+    //     return find(parent[a]);
+    // }
+    // public void union(int a,int b) {
+    //     int leadera = find(a);
+    //     int leaderb = find(b);
+    //     if(leadera!=leaderb) {
+    //         parent[leaderb] = leadera;
+    //     }
+    // }
+    // public int findCircleNum(int[][] adj) {
+    //     int n = adj.length;
+    //     parent  = new int[n+1];
+    //     for(int i=1;i<=n;i++) {
+    //         parent[i] = i;
+    //     }
+    //     for(int i=0;i<n;i++) {
+    //         for(int j=0;j<n;j++) {
+    //             // edge is from i+1 to j+1
+    //             if(i!=j && adj[i][j]==1) union(i+1,j+1);
+    //         }
+    //     }
+    //     int count = 0;
+    //     for(int i=1;i<=n;i++) {
+    //         if(parent[i]==i) count++;
+    //     }
+    //     return count;
+    // }
+
+    // optimized DSU
     static int[] parent;
+    static int[] size;
     public int find(int a) {
         if(parent[a]==a) return a;
         return find(parent[a]);
     }
     public void union(int a,int b) {
-        int leadera = find(a);
-        int leaderb = find(b);
-        if(leadera!=leaderb) {
-            parent[leaderb] = leadera;
+        a = find(a);
+        b = find(b);
+        if(a!=b) {
+            if(size[a]>size[b]) {
+                parent[a] = b;
+                size[a] += size[b];
+            } else {
+                parent[b] = a;
+                size[b] += size[a];
+            }
         }
     }
     public int findCircleNum(int[][] adj) {
         int n = adj.length;
         parent  = new int[n+1];
+        size  = new int[n+1];
         for(int i=1;i<=n;i++) {
             parent[i] = i;
+            size[i] = 1;
         }
         for(int i=0;i<n;i++) {
             for(int j=0;j<n;j++) {
