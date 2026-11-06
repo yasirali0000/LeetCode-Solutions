@@ -11,7 +11,6 @@ class Solution {
                 j++;
             }
         }
-        int x = ans.length;
         for(int i=0;i<j;i++) {
             nums[i] = ans[i];
         }
